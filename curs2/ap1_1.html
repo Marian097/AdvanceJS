@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Shop{
+            constructor(name, type, program, nrPeople,  adress) //=> se apeleaza automat.
+            {
+                this.name = name;
+                this.type = type;
+                this.program = program;
+                this.nrPeople = nrPeople;
+                this.adress = adress;
+
+            }
+
+            set myName(newName) // => se apeleaza automat(ma ajuta cum sa setez datele din interiorul clasei).
+            {
+                if(newName.length >= 3)
+                {
+                    this.name = newName;
+                }
+            }
+
+            get myName(){ // => returneaza si afiseaza.
+                return this.name;
+            }
+        }
+
+
+
+
+
+    </script>
+</html>

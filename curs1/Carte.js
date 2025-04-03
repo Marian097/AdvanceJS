@@ -20,6 +20,11 @@ class Carte{
     {
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
+
+    deschidCartea()
+    {
+        console.log("Am deschis cartea la pagina 12")
+    }
 }
 
 export{ Carte };
