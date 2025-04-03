@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="slider">
+        <img id="slider-img" src="./image-1.jpg" alt="burger">
+        <button id="prev-bt">Prev</button>
+        <button id="next-bt">Next</button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        let gallery = [
+            "./image-1.jpg",
+            "./image-2.jpg",
+            "./image-3.jpg",
+            "./image-4.jpg"
+        ];
+
+
+
+        let index=0
+
+        
+        
+
+        $("#next-bt").on("click", function () {
+            index++
+            if (index >= gallery.length)
+            {
+                index=0;
+                $("#slider-img").attr("src", gallery[index])
+            }
+            $("#slider-img").attr("src", gallery[index])
+            
+        })
+
+        $("#prev-bt").on("click", function () {
+            index--
+            if (index < 0)
+            {
+                index=gallery.length - 1;
+                $("#slider-img").attr("src", gallery[index])
+            }
+            $("#slider-img").attr("src", gallery[index])
+        })
+
+    </script>
+</body>
+
+</html>

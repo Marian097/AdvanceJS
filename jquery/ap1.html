@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator Preț Dinamic</title>
+    <style>
+        .produs {
+            margin-bottom: 10px;
+        }
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Coș de cumpărături</h2>
+
+    <div class="produs">
+        <label>Apă</label>
+        <span class="pret" data-pret="5">5 lei</span>
+        <input type="number" class="cantitate" min="0" value="0">
+    </div>
+
+    <div class="produs">
+        <label>Pâine</label>
+        <span class="pret" data-pret="4">4 lei</span>
+        <input type="number" class="cantitate" min="0" value="0">
+    </div>
+
+    <div class="produs">
+        <label>Lapte</label>
+        <span class="pret" data-pret="6">6 lei</span>
+        <input type="number" class="cantitate" min="0" value="0">
+    </div>
+
+    <h3>Total: <span id="total">0</span> lei</h3>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+
+        $(".cantitate").on("input", function(){
+
+            let total = 0;
+        $(".produs").each(function(){
+            let cantitate = $(this).find(".cantitate").val()
+            let pret = $(this).find(".pret").data("pret");
+
+            cantitate = parseInt(cantitate) || 0 
+            let subtotal = cantitate * pret;
+            total+=subtotal;
+        })
+        $("#total").text(total);
+        })
+        
+        // Vei scrie tu aici codul jQuery care:
+        // 1. Citește fiecare cantitate
+        // 2. Înmulțește cu prețul (din atributul data-pret)
+        // 3. Afișează totalul în #total
+
+        // Sfat: folosește .on("input", ...) sau .on("change", ...) pe toate inputurile
+    </script>
+</body>
+</html>

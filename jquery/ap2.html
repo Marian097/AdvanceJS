@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="bt">Adauga intrebare</button>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(".bt").on("click", function(){
+           let bloc =`<ul>
+                      <li><label>Intrebare:</label></li>
+                      <li><input type='text'></li>
+                      <li><label>Raspuns:</label></li>
+                      <li><input type='text'></li>
+                      <li><input type='text'></li>
+                      <li><input type='text'></li>
+                      <li><button class='del-btn'>Sterge intrebare</button></li>
+                      </ul>`
+
+        $("body").append(bloc);
+        });
+        $(document).on("click", ".del-btn", function(){
+            $(this).closest("ul").remove()
+        })
+    </script>
+</body>
+</html>

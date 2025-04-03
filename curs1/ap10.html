@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>JavaScript setter si getter cu get si set</h2>
+    <table data-start="1719" data-end="2085" node="[object Object]">
+        <thead data-start="1719" data-end="1808">
+            <tr data-start="1719" data-end="1808">
+                <th data-start="1719" data-end="1736">Acces Modifier</th>
+                <th data-start="1736" data-end="1752">În JavaScript</th>
+                <th data-start="1752" data-end="1782">Accesibil din afara clasei?</th>
+                <th data-start="1782" data-end="1808">Accesibil în subclase?</th>
+            </tr>
+        </thead>
+        <tbody data-start="1896" data-end="2085">
+            <tr data-start="1896" data-end="1954">
+                <td><strong data-start="1898" data-end="1908">Public</strong></td>
+                <td>Implicit (fără <code data-start="1926" data-end="1929">#</code> sau <code data-start="1934"
+                        data-end="1937">_</code>)</td>
+                <td>✅ Da</td>
+                <td>✅ Da</td>
+            </tr>
+            <tr data-start="1955" data-end="2031">
+                <td><strong data-start="1957" data-end="1970">Protected</strong></td>
+                <td>Convențional (<code data-start="1987" data-end="1998">_property</code>)</td>
+                <td>✅ (dar nerecomandat)</td>
+                <td>✅ Da</td>
+            </tr>
+            <tr data-start="2032" data-end="2085">
+                <td><strong data-start="2034" data-end="2045">Private</strong></td>
+                <td><code data-start="2048" data-end="2059">#property</code> (ES2020+)</td>
+                <td>❌ Nu</td>
+                <td>❌ Nu</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        class Person {
+            _name;
+            constructor(name) {
+                // proprietate protected _name si suport pentru name
+                this._name = name;
+            }
+            get name() {
+                console.log('Sunt in getter')
+                return this._name;
+            }
+            set name(newName) {
+                console.log('Sunt in setter')
+                newName = newName.trim();
+                if (newName === '') {
+                    throw 'Error';
+                }
+                this._name = newName;
+            }
+        }
+        let person = new Person("Mihai");
+        // set 
+        //person.name = 'Ion';
+        //person.name = 'Dan';
+
+
+        // get
+        let mynume = person.name;
+        console.log('Numele este', mynume);
+
+        console.log('Obiectul este este', person);
+
+    </script>
+</body>
+
+</html>
