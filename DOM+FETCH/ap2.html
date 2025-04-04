@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="search" />
+    <div id="utilizatori"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+      fetch("https://jsonplaceholder.typicode.com/users")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          data.forEach((info) => {
+            let cart = `
+                <div class='user'>
+                <h3 data-name='${info.name.toLowerCase()}'>${info.name}</h3>
+                <p>${info.email}</p>
+                <p>${info.address.city}</p>
+                </div>`;
+                $("#utilizatori").append(cart)
+          });
+
+          $("#search").on("input", function(){
+            let search = $("#search").val().toLowerCase()
+            $(".user").each(function(){
+                let name = $(this).find("h3").attr("data-name")
+                console.log(name)
+                if (name.includes(search))
+                {
+                    $(this).show()
+                }
+                else
+                {
+                    $(this).hide()
+                }
+            })
+          })
+
+        });
+    </script>
+  </body>
+</html>

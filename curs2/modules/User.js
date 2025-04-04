@@ -1,5 +1,5 @@
 class User{
-    #varsta //=> Definim varsta ca valoare privata.
+    #varsta //=> Definim varsta ca valoare privata(nu merge modificata din afara clasei.)
     _email;
     constructor(id,nume){
         //setam proprietatile

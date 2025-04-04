@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="bt-1">Adauga intrebare</button>
+    <button id="bt-2">Afiseaza raspuns</button>
+    <ul>
+
+    </ul>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $("#bt-1").click(function(){
+            let intrebare = $("<input type='text' class='intrebare'></input>");
+            let raspuns_1 = $("<input type='text' class='raspuns'></input>");
+            let raspuns_2 = $("<input type='text' class='raspuns'></input>");
+            $("body").append(intrebare, raspuns_1, raspuns_2);
+        })
+
+        $("#bt-2").click(function(){
+            $("ul").empty(); // dacă vrei să cureți lista anterioară
+            $("input").each(function(){
+                let rasp = $(this).val();
+                let li = `<li>${rasp}</li>`;
+                $("ul").append(li);
+            });
+        });
+        
+    </script>
+    
+</body>
+</html>

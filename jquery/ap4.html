@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Creaza 3 inputuri , adauga un button, la click citeste valoare introdusa si afiseaza-le intr-un ul sub inputuri -->
+    <input type="text" class="raspuns" />
+    <input type="text" class="raspuns" />
+    <input type="text" class="raspuns" />
+    <ul id="list"></ul>
+    <button id="bt">Afiseaza raspuns</button>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+      $("#bt").click(function () {
+        $(".raspuns").each(function () {
+          let raspuns = $(this).val();
+          let li = `<li>${raspuns}</li>`;
+          $("#list").append(li);
+          $(this).val("");
+        });
+      });
+    </script>
+  </body>
+</html>

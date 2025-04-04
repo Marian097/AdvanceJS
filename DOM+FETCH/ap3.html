@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Detalii utilizatori</title>
+  </head>
+  <body>
+    <h1>Utilizatori</h1>
+
+    <!-- Lista utilizatorilor -->
+    <div id="utilizatori"></div>
+
+    <!-- Detalii despre utilizatorul selectat -->
+    <div
+      id="detalii"
+      style="margin-top: 20px; border-top: 1px solid #ccc; padding-top: 10px"
+    ></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+      fetch("https://jsonplaceholder.typicode.com/users")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          data.forEach((user) => {
+            let p = `<p class='user' data-id='${user.id}'>${user.name}</p>`;
+            $("#utilizatori").append(p);
+            $(".user").on("click", function(){
+                $(".user").each(function(){
+                    let info = `<ul>
+                        <li>${this.email}</li>
+                        <li>${user.phone}</li>
+                        <li>${user.address.city}</li>
+                        <li>${user.website}</li>
+                    </ul>`
+    
+                    $("#detalii").append(info)
+
+                })
+            })
+          });
+
+        });
+    </script>
+  </body>
+</html>

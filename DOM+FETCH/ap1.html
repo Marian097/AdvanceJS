@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mini Blog</title>
+  </head>
+  <body>
+    <h1>Mini Blog</h1>
+    <input type="text" id="search" placeholder="Caută titlu..." />
+    <div id="postari"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+      fetch("https://jsonplaceholder.typicode.com/posts")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          data.forEach((posts) => {
+            let card = `
+      <div class="post" data-title="${posts.title.toLowerCase()}">
+        <h3>${posts.title}</h3>
+        <p>${posts.body}</p>
+        <hr>
+      </div>
+    `;
+
+    $("#postari").append(card);
+          });
+        });
+
+        $(document).ready(function(){
+            $("#search").on("input", function(){
+                let searchTitle = $("#search").val().toLowerCase()
+                $(".post").each(function(){
+                    let title = $(this).find("h3").text();
+                    if (title.includes(searchTitle))
+                    {
+                        $(this).show()
+                    }
+                    else
+                    {
+                        $(this).hide()
+                    }
+                })
+            })
+
+        })
+        
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="" class="form">
+      <div>
+        <label for="text">Text: </label>
+        <input type="text" name="message" id="message" />
+      </div>
+      <div>
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email" />
+      </div>
+      <div>
+        <label for="number">Number: </label>
+        <input type="number" name="number" id="number" />
+      </div>
+      <div>
+        <label for="pass">Password:</label>
+        <input type="password" name="pass" id="pass" />
+      </div>
+      <button type="button" id="bt-reset">reset</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $("#bt-reset").click(function(){
+            $(".form").each(function(){
+                if ($(this).find("input").val() != "")
+                {
+                    $(this).find("input").val("");
+                }
+            })
+        })
+    </script>
+  </body>
+</html>
