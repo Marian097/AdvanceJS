@@ -1,0 +1,35 @@
+<script>
+  class BazaDeDate {
+    static _instance = null;
+    #tabele = {};
+
+    constructor() {
+      if (!BazaDeDate._instance) {
+        BazaDeDate._instance = this;
+      }
+      return BazaDeDate._instance;
+    }
+
+    adauga(tabel, inregistrare) {
+      if (!this.#tabele[tabel]) {
+        this.#tabele[tabel] = [];
+      }
+      this.#tabele[tabel].push(inregistrare);
+    }
+
+    afiseaza() {
+      console.log(this.#tabele);
+    }
+  }
+
+  const db1 = new BazaDeDate();
+  db1.adauga("utilizatori", { id: 1, nume: "Ion" });
+  db1.adauga("produse", { id: 10, nume: "Ciocan" });
+
+  const db2 = new BazaDeDate();
+  db2.adauga("utilizatori", { id: 2, nume: "Maria" });
+
+  db1.afiseaza(); // Afișează toate datele
+
+  console.log(db1 === db2); // true (verifică Singleton-ul)
+</script>

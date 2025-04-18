@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Notificator {
+            static _instance = null;
+            #notificari = [];
+
+            constructor() {
+                if (Notificator._instance === null) {
+                    Notificator._instance = this;
+                }
+
+                return Notificator._instance;
+            }
+
+
+            adaugaNotificare(text) {
+                this.#notificari.push(text);
+
+            }
+
+            afiseazaNotificari() {
+                console.log(this.#notificari);
+
+            }
+
+            lungime() {
+                return this.#notificari.length;
+            }
+            stergeTot() {
+                this.#notificari = [];
+            }
+
+            static status() {
+                return Notificator._instance ? Notificator._instance.lungime() : 0;
+            }
+        }
+
+        const n1 = new Notificator();
+        n1.adaugaNotificare("Ai un mesaj nou");
+        n1.adaugaNotificare("Update disponibil");
+
+        const n2 = new Notificator();
+        n2.adaugaNotificare("Alerta de securitate");
+
+        n1.afiseazaNotificari();
+        console.log("Status:", Notificator.status()); // 3 notificări
+
+        n2.stergeTot();
+        n1.afiseazaNotificari();
+        console.log("Status:", Notificator.status()); // 0 n
+    </script>
+
+</body>
+
+</html>
