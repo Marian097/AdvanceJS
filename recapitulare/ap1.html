@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      form input {
+        display: block;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="lista-produse"></ul>
+    <form action="" class="form">
+      <input type="text" name="produs" id="numeProdus" />
+      <input type="number" name="produs" id="pretProdus" />
+      <button id="adauga">Adauga</button>
+    </form>
+
+    <button id="sorteaza">Sorteaza</button>
+    <button id="afiseaza">Afiseaza doar produsele sub 5 ron</button>
+    <script src="./jquery.min.js"></script>
+    <script>
+      const produse = [
+        { nume: "Lapte", pret: 7 },
+        { nume: "Paine", pret: 3 },
+        { nume: "Oua", pret: 10 },
+      ];
+
+      let lista = $("#lista-produse");
+
+      produse.forEach((element) => {
+        let li = `<li>${element.nume} - ${element.pret}RON</li>`;
+        lista.append(li);
+      });
+
+      $("#sorteaza").on("click", function () {
+        $("#lista-produse").closest("ul").find("li").remove();
+        let productSort = produse.sort((a, b) => a.pret - b.pret);
+        productSort.forEach((element) => {
+          let li = `<li>${element.nume} - ${element.pret}RON</li>`;
+          lista.append(li);
+        });
+      });
+
+      $("#adauga").on("click", function (e) {
+        e.preventDefault();
+        // Înlocuiește codul adăugare produs cu acesta:
+          let name = document.getElementById("numeProdus").value;
+          let price = parseFloat(document.getElementById("pretProdus").value);
+
+          if (!name || isNaN(price)) {
+            alert("Completează numele și prețul produsului!");
+            return;
+          }
+
+          // Citim array-ul curent din localStorage sau inițializăm cu array gol
+          let produseExistente =
+            JSON.parse(localStorage.getItem("newProduct")) || [];
+
+          // Adăugăm noul produs
+          let produsNou = { nume: name, pret: price };
+          let arrayNou = [...produseExistente, produsNou];
+
+          // Salvăm în localStorage
+          localStorage.setItem("newProduct", JSON.stringify(arrayNou));
+
+          // Afișăm imediat în listă
+          let li = `<li>${name} - ${price}RON</li>`;
+          lista.append(li);
+        });
+   
+
+      $("#afiseaza").on("click", function () {});
+
+      $(document).ready(function () {
+        let array = JSON.parse(localStorage.getItem("newProduct")) || [];
+        array.forEach((element) => {
+          let li = `<li>${element.nume} - ${element.pret}RON</li>`;
+          lista.append(li);
+        });
+      });
+    </script>
+  </body>
+</html>
