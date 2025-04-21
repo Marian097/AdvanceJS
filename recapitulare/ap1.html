@@ -45,6 +45,8 @@
         });
       });
 
+
+      
       $("#adauga").on("click", function (e) {
         e.preventDefault();
         // Înlocuiește codul adăugare produs cu acesta:
@@ -67,21 +69,55 @@
           // Salvăm în localStorage
           localStorage.setItem("newProduct", JSON.stringify(arrayNou));
 
-          // Afișăm imediat în listă
-          let li = `<li>${name} - ${price}RON</li>`;
-          lista.append(li);
+          afiseazaProduse(arrayNou);
         });
    
 
-      $("#afiseaza").on("click", function () {});
+      $("#afiseaza").on("click", function () {
+        let produseIeftine = produse.filter(element => element.pret < 5)
+        produseIeftine.forEach(el => {
+          let li = `<li>${el.nume} - ${el.pret}</li>`
+          $("ul").html(li);
+        })
+      });
+       
 
-      $(document).ready(function () {
-        let array = JSON.parse(localStorage.getItem("newProduct")) || [];
-        array.forEach((element) => {
-          let li = `<li>${element.nume} - ${element.pret}RON</li>`;
+
+      function afiseazaProduse(produseArray){
+        lista.html("");
+        produseArray.forEach((element, index) => {
+          let li = `<li data-index="${index}">
+            ${element.nume} - ${element.pret}RON
+            <button class="bt-delete">Sterge</button> 
+          </li>`;
           lista.append(li);
         });
+      }
+
+      $("#lista-produse").on("click", ".bt-delete", function () {
+        let index = $(this).parent().data("index");
+        let produse = JSON.parse(localStorage.getItem("newProduct")) || [];
+      
+        produse.splice(index, 1);
+        localStorage.setItem("newProduct", JSON.stringify(produse));
+        afiseazaProduse(produse);
       });
+      
+      
+      
+
+      $(document).ready(function(){
+        let array = JSON.parse(localStorage.getItem("newProduct")) || produse;
+        afiseazaProduse(array);
+      });
+
+
+      
+
+
+
+
+
     </script>
   </body>
 </html>
