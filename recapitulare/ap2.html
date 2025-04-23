@@ -6,6 +6,49 @@
     <title>Document</title>
 </head>
 <body>
+    <label for="title">Title: </label>
+    <input type="text" name="name" id="name">
+    <script src="./jquery.min.js"></script>
+    <script>
+        fetch("https://fakestoreapi.com/products")
+        .then(response => {
+            if (!response.ok)
+            {
+                throw new Error ("Eroare la fetch")
+            }
+            return response.json()
+        })
+        .then(data => {
+            console.log(data)
+            data.forEach((element, index) => {
+                let div = $(`<div class ="produs"><h2 data-index="${index}">${element.title}</h2>
+                    <p><img src = "${element.image}" style ="width: 200px; height:200px;"></p>
+                    <p>${element.price} RON</p>
+                    <button class ="bt-detalii" >Detalii</button>
+                </div>`);
+                    $("body").append(div);         
+            })
+
+            $(".produs").on("click", ".bt-detalii", function(){
+                let prodDiv = $(this).closest(".produs");
+                if (prodDiv.find(".info").length > 0)
+                {
+                    prodDiv.find(".info").remove();
+                }
+                else {
+                    let index = prodDiv.find("h2").data("index");
+                    let description = `<div class="info">${data[index].description}</div>`
+                    prodDiv.append(description)
+                }
+
+            })
+
+        })
+
+        .catch(err => {
+            console.error("Ceva nu a mers cum trebuie: ", err);
+        })
+    </script>
 
     
 </body>
