@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="produse"></div>
+    <div id="paginare">
+        <button id="pagina-prev">« Anterior</button>
+        <span id="pagina-curenta">Pagina 1</span>
+        <button id="pagina-next">Următor »</button>
+      </div>
+      
+      <script src="./jquery.min.js"></script>
+    <script>
+        const toateProdusele = [];
+        let produsePePagina = 5;
+        let paginaCurenta = 1;
+
+        function afiseazaPagina(pagina)
+        {
+            $("#pagina-curenta").text("Pagina" + pagina);
+            $("#produse").html("");
+
+            let start = (pagina - 1) * produsePePagina;
+            let end = start + produsePePagina;
+
+            let produseDeAfisat = toateProdusele.slice(start, end);
+
+            produseDeAfisat.forEach((produs, index) => {
+                let html = `<div class="produse">
+                    <h2>${produs.title}</h2>
+                    <img src = "${produs.image}" style="width:200px; height:200px;">
+                    <p>${produs.price}</p>
+                </div>`
+
+                $("#produse").append(html);
+            })
+        }
+
+        fetch("https://fakestoreapi.com/products")
+        .then(response => {
+            if (!response.ok)
+            {
+                throw new Error ("Ceva nu a mers cum trebuie")
+            }
+            return response
+        })
+
+        .then(data => {
+            toateProdusele.push(data);
+            afiseazaPagina(paginaCurenta);
+        });
+
+
+        $("#pagina-next").on("click", function(){
+            let maxPagini = Math.ceil(toateProdusele.length / produsePePagina);
+            if (paginaCurenta < maxPagini)
+            {
+                paginaCurenta++
+                afiseazaPagina(paginaCurenta);
+            }
+        });
+
+        $("#pagina-prev").on("click", function(){
+            if (paginaCurenta > 1)
+            {
+                paginaCurenta--;
+                afiseazaPagina(paginaCurenta);
+            }
+        });
+    </script>
+</body>
+</html>

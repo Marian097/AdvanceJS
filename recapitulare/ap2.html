@@ -24,7 +24,7 @@
                 let div = $(`<div class ="produs"><h2 data-index="${index}">${element.title}</h2>
                     <p><img src = "${element.image}" style ="width: 200px; height:200px;"></p>
                     <p>${element.price} RON</p>
-                    <button class ="bt-detalii" >Detalii</button>
+                    <button class="bt-detalii">Detalii</button>
                 </div>`);
                     $("body").append(div);         
             })
@@ -40,8 +40,25 @@
                     let description = `<div class="info">${data[index].description}</div>`
                     prodDiv.append(description)
                 }
-
             })
+
+            $("#name").on("keyup", function(){
+                let numeProdus = $("#name").val().toLowerCase();
+                console.log(numeProdus);
+                $(".produs").each(function(){
+                    let produse = $(this).find("h2").text().toLowerCase();
+                    if (produse.includes(numeProdus))
+                    {
+                        $(this).show()
+                    }
+                    else
+                    {
+                        $(this).hide()
+                    }
+                });
+            })
+
+            
 
         })
 
