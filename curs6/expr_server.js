@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // GET
 app.get('/', (req, res) => res.send('Hello World!'))
 
-app.get('/blog', (req, res) => res.render('blog.html'))
+//app.get('/blog', (req, res) => res.render('blog.html'))
 
 
 // POST
