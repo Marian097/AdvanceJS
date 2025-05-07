@@ -1,31 +1,46 @@
 const express = require("express");
-const app = express();
+const app = express()
 const bodyParser = require("body-parser");
+const ejs = require("ejs");
+const db = require("node:sqlite");
 
-app.engine("html", require("ejs").renderFile);
 
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended : true}))
+app.engine("html", ejs.renderFile);
+app.set("views engine", "html")
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}));
 
-app.get("/", (req, res) => {res.send("Hello World")});
+var nume;
 
-app.post("/", function(req, res){
-    console.log(req.body)
-    res.send("Post request");
+app.get("/", (req, res)=> {
+    res.send("Hello get");
 })
 
 
-app.put("/user", function(req, res){
-    res.send("Put Request")
+app.post("/users", (req, res)=>{
+    nume = req.body.nume;
+    res.send("Numele este salvat")
 });
 
-app.delete("/user", function(req, res){
-    res.send("Delete request")
-});
+
+app.put("/users", (req, res) => {
+    nume = req.body.nume
+    res.send("Numele actualizat cu succes")
+})
+
+app.delete("/users", (req, res) => {
+    nume = "";
+    res.send("Numele a fost sters cu succes.")
+})
 
 
 app.listen(
-    3002,
-    ()=> {console.log(`Aplicatia ruleaza pe portul 3002`)}
+    3001, 
+    ()=>{
+        console.log("Serverul e afla pe http://localhost:3001")
+    }
 )
+
+
+

@@ -7,15 +7,15 @@ let server = http.createServer(function(req, res){
     res.writeHead(
         200,
         {
-            "Content-Type" : "text/html",
-            "Access-Control-Allow-Origin": "*"
+            "content-type": "text/html",
+            "access-control-allow-origin": "*"
         }
     );
 
-    res.write("<span>Acesta este un span</span>")
+    res.write("Hello World. This is my second server with node.js clasic");
     res.end()
 })
 
-server.listen(port, host, ()=>{
-    console.log(`http://${host}:${port}`);
+server.listen(port, host, ()=> {
+    console.log(`Click pe http://${host}:${port}`);
 })
