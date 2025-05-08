@@ -4,10 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width='device-width', initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .form{
+            display: block;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Primul server cu express</h1>
+    <form class="form" action="/adauga" method="post">
+        <label for="name">Nume si prenume: </label>
+        <input type="text" id="name" name="name">
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email">
+        <label for="password">Parola: </label>
+        <input type="password" name="pass" id="pass">
+        <button type="submit" id="bt-submit">submit</button>
+    </form>
+    
+
+    <div>
+        <p id="output"></p>
+    </div>
+
+
     
 </body>
 </html>
