@@ -14,5 +14,5 @@ function showPerson(data: Person): Person {
   return data;
 }
 
-const obj = { name: "Eduard", age: 3, born: new Date("2020/03/06") };
-//showPerson(obj);
+const obj= { name: "Eduard", age: 3, born: new Date("2020/03/06") };
+//npshowPerson(obj);
